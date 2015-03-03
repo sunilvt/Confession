@@ -1,0 +1,1051 @@
+﻿<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8" />
+    <title>Confession</title>
+
+    <!-- Wisdom references -->
+    <link href="css/jquery.mobile-1.4.5.min.css" rel="stylesheet" />
+    <link href="css/index.css" rel="stylesheet" />
+    <script src="http://code.jquery.com/jquery-1.11.1.min.js"></script>
+    <script src="scripts/jquery.mobile-1.4.5.min.js"></script>
+    <script src="cordova.js"></script>
+    <script src="scripts/platformOverrides.js"></script>
+
+    <script src="scripts/index.js"></script>
+</head>
+<body onload="onLoad();">
+    <script type="text/javascript">
+
+        function onLoad() {
+            document.addEventListener("deviceready", onDeviceReady, false);
+
+            function onDeviceReady() {
+                //  cordova.exec(null, null, "SplashScreen", "hide", []);
+                navigator.splashscreen.hide();
+                document.addEventListener("backbutton", onBackKeyDown, false);
+            }
+
+            function onBackKeyDown() {
+                //  alert($.mobile.activePage.attr("id"));
+
+                if ($.mobile.activePage.attr("id") === "mainpage") {
+                    navigator.app.exitApp();
+                } else {
+
+
+                    navigator.app.backHistory();
+                }
+
+                /*  if ($.mobile.activePage.is('#mainpage')) {
+                      e.preventDefault();
+                      navigator.app.exitApp();
+                  } else {
+                      navigator.app.backHistory();
+                  }*/
+            }
+        }
+
+        // main pwd page
+        $(document).on('pageshow', '#examin', function () {
+            $('#mainpwd').val("");
+        });
+
+
+
+        $(document).on("pageinit", "#pwdscreen", function () {
+            // forgot pass code
+            /*    var clicked = false;
+                $('#forgotpass').click(function () {
+                    if (clicked === false) {
+                        $(this).addClass('ui-disabled');
+                        clicked = true;
+                        alert('Button is now disabled');
+                    }
+                });*/
+
+            $('#forgotpass').click(function () {
+                window.location = "#test";
+            });
+            //Exit App
+
+
+            // No Pass code
+
+            $('#nopassbtn').click(function () {
+
+                window.location = "#set";
+            });
+            // let me in
+            $('#letmeinbtn').click(function () {
+
+                var pwd = localStorage.getItem("mainpwd");
+
+                if ($('#mainpwd').val() == "") {
+                    $('#popuppwdblank').popup('open');
+                    return;
+                }
+                if (pwd != null) {
+                    if (pwd.length > 0) {
+                        if (pwd == $('#mainpwd').val()) {
+                            window.location = "#examin";
+                        } else {
+                            $('#popupWrongPwd').popup('open');
+                        }
+
+                    } else {
+                        $('#popupNoPwd').popup('open');
+                    }
+                } else {
+                    $('#popupNoPwd').popup('open');
+                }
+                //  window.location = "#examin";
+            });
+        });
+        // main pwd page
+        $(document).on("pageinit", "#examin", function () {
+
+            //Clear All
+            $('#btnClearAll').click(function () {
+                localStorage.removeItem("com1");
+                localStorage.removeItem("com2");
+                localStorage.removeItem("com3");
+                localStorage.removeItem("com4");
+                localStorage.removeItem("com5");
+                localStorage.removeItem("com6");
+                localStorage.removeItem("com7");
+                localStorage.removeItem("com8");
+                localStorage.removeItem("com9");
+                localStorage.removeItem("com10");
+
+                $('#com1').val("");
+                $('#com2').val("");
+                $('#com3').val("");
+                $('#com4').val("");
+                $('#com5').val("");
+                $('#com6').val("");
+                $('#com7').val("");
+                $('#com8').val("");
+                $('#com9').val("");
+                $('#com10').val("");
+
+            });
+            $('#com1').blur(function () {
+                localStorage.setItem("com1", $('#com1').val());
+            });
+            $('#com2').blur(function () {
+                localStorage.setItem("com2", $('#com2').val());
+            });
+            $('#com3').blur(function () {
+                localStorage.setItem("com3", $('#com3').val());
+            });
+            $('#com4').blur(function () {
+                localStorage.setItem("com4", $('#com4').val());
+            });
+            $('#com5').blur(function () {
+                localStorage.setItem("com5", $('#com5').val());
+            });
+            $('#com6').blur(function () {
+                localStorage.setItem("com6", $('#com6').val());
+            });
+            $('#com7').blur(function () {
+                localStorage.setItem("com7", $('#com7').val());
+            });
+            $('#com8').blur(function () {
+                localStorage.setItem("com8", $('#com8').val());
+            });
+            $('#com9').blur(function () {
+                localStorage.setItem("com9", $('#com9').val());
+            });
+            $('#com10').blur(function () {
+                localStorage.setItem("com10", $('#com10').val());
+            });
+            $('#btn1').click(function () {
+                localStorage.setItem("com1", $('#com1').val());
+            });
+            $('#btn2').click(function () {
+                localStorage.setItem("com2", $('#com2').val());
+            });
+            $('#btn3').click(function () {
+                localStorage.setItem("com3", $('#com3').val());
+            });
+            $('#btn4').click(function () {
+                localStorage.setItem("com4", $('#com4').val());
+            });
+            $('#btn5').click(function () {
+                localStorage.setItem("com5", $('#com5').val());
+            });
+            $('#btn6').click(function () {
+                localStorage.setItem("com6", $('#com6').val());
+            });
+            $('#btn7').click(function () {
+                localStorage.setItem("com7", $('#com7').val());
+            });
+            $('#btn8').click(function () {
+                localStorage.setItem("com8", $('#com8').val());
+            });
+            $('#btn9').click(function () {
+                localStorage.setItem("com9", $('#com9').val());
+            });
+            $('#btn10').click(function () {
+                localStorage.setItem("com10", $('#com10').val());
+            });
+
+
+        });
+        // for examin
+        $(document).on("pageinit", "#mainpage", function () {
+            $('#examinbtn').click(function () {
+                //pwdscreen
+                localStorage.setItem("Ex-Page", "001");
+                window.location = "#pwdscreen";
+            });
+
+            $('#sinbtn').click(function () {
+                //pwdscreen
+                window.location = "#sin";
+            });
+
+            $('#actbtn').click(function () {
+                //pwdscreen
+                window.location = "#act";
+            });
+
+            $('#History').click(function () {
+
+                window.location = "#History";
+            });
+
+
+        });
+
+        $(document).on('pageshow', '#examin', function () {
+
+            var ExData = localStorage.getItem("Ex-Page");
+            if (ExData == "" || ExData == null) {
+                //        window.location = "#pwdscreen";
+            }
+            localStorage.setItem("Ex-Page", "");
+            // localStorage.removeItem("Ex-Page");
+            var com1 = localStorage.getItem("com1");
+            if (com1 != null) {
+                if (com1.length > 0 || com1 != null) {
+                    $('#com1').val(com1);
+                }
+            }
+            com1 = localStorage.getItem("com2");
+            if (com1 != null) {
+                if (com1.length > 0 || com1 != null) {
+                    $('#com2').val(com1);
+                }
+            }
+            com1 = localStorage.getItem("com3");
+            if (com1 != null) {
+                if (com1.length > 0 || com1 != null) {
+                    $('#com3').val(com1);
+                }
+            }
+            com1 = localStorage.getItem("com4");
+            if (com1 != null) {
+                if (com1.length > 0 || com1 != null) {
+                    $('#com4').val(com1);
+                }
+            }
+            com1 = localStorage.getItem("com5");
+            if (com1 != null) {
+                if (com1.length > 0 || com1 != null) {
+                    $('#com5').val(com1);
+                }
+            }
+            com1 = localStorage.getItem("com6");
+            if (com1 != null) {
+                if (com1.length > 0 || com1 != null) {
+                    $('#com6').val(com1);
+                }
+            }
+            com1 = localStorage.getItem("com7");
+            if (com1 != null) {
+                if (com1.length > 0 || com1 != null) {
+                    $('#com7').val(com1);
+                }
+            }
+            com1 = localStorage.getItem("com8");
+            if (com1 != null) {
+                if (com1.length > 0 || com1 != null) {
+                    $('#com8').val(com1);
+                }
+            }
+            com1 = localStorage.getItem("com9");
+            if (com1 != null) {
+                if (com1.length > 0 || com1 != null) {
+                    $('#com9').val(com1);
+                }
+            }
+            com1 = localStorage.getItem("com10");
+            if (com1 != null) {
+                if (com1.length > 0 || com1 != null) {
+                    $('#com10').val(com1);
+                }
+            }
+        });
+        // set page
+
+        $(document).on('pageshow', '#set', function () {
+            $('#req-1').val("");
+            $('#req-2').val("");
+            $('#req-3').val("");
+            $('#EX-PWD1').val("");
+            $('#EX-PWD2').val("");
+        });
+        $(document).on("pageinit", "#set", function () {
+            //Clear fields
+            $('#clearsetbtn').click(function () {
+                $('#req-1').val("");
+                $('#req-2').val("");
+                $('#req-3').val("");
+                $('#EX-PWD1').val("");
+                $('#EX-PWD2').val("");
+            });
+            // No Pass code
+            $('#savesetbtn').click(function () {
+                //window.location = "#set";
+                if ($('#EX-PWD1').val() == "" || $('#EX-PWD2').val() == "") {
+                    $('#popNoPassEntered').popup('open');
+                }
+
+                if ($('#EX-PWD1').val() != $('#EX-PWD2').val() || $('#EX-PWD1').val() == "" || $('#EX-PWD2').val() == "") {
+                    $('#popPassWrong').popup('open');
+                } else {
+
+                    //if()
+                    if ($('#req-1').val() == "" || $('#req-2').val() == "" || $('#req-3').val() == "") {
+                        $('#noData').popup('open');
+                    } else {
+                        //
+                        localStorage.setItem("com1", "");
+                        localStorage.setItem("com2", "");
+                        localStorage.setItem("com3", "");
+                        localStorage.setItem("com4", "");
+                        localStorage.setItem("com5", "");
+                        localStorage.setItem("com6", "");
+                        localStorage.setItem("com7", "");
+                        localStorage.setItem("com8", "");
+                        localStorage.setItem("com9", "");
+                        localStorage.setItem("com10", "");
+
+
+                        localStorage.setItem("mainpwd", $('#EX-PWD1').val());
+                        localStorage.setItem("Req-1", $('#req-1').val());
+                        localStorage.setItem("Req-2", $('#req-2').val());
+                        localStorage.setItem("Req-3", $('#req-3').val());
+                        $('#popPasssaved').popup('open');
+                        window.location = "#examin";
+                    }
+                }
+            });
+        });
+
+        // retrieve pass code
+        $(document).on('pageinit', '#test', function () {
+
+
+
+            // new pass code
+            $('#newPassCode').click(function () {
+                window.location = "#set";
+            });
+
+            $('#setclearsetbtn').click(function () {
+                $('#setreq-1').val("");
+                $('#setreq-2').val("");
+                $('#setreq-3').val("");
+            });
+            $('#setsavesetbtn').click(function () {
+                var req_val1 = localStorage.getItem("Req-1");
+                var req_val2 = localStorage.getItem("Req-2");
+                var req_val3 = localStorage.getItem("Req-3");
+                if (req_val1 == "" || req_val2 == "" || req_val3 == "" || req_val1 == null || req_val2 == null || req_val3 == null) {
+                    //
+                    $('#popupNoData').popup('open');
+                    return;
+                }
+                if ($('#setreq-1').val() == "") {
+
+                    $('#popupEntervalue').popup('open');
+
+                    return;
+                }
+                if ($('#setreq-2').val() == "") {
+
+                    $('#popupEntervalue').popup('open');
+
+                    return;
+                }
+                if ($('#setreq-3').val() == "") {
+
+                    $('#popupEntervalue').popup('open');
+
+                    return;
+                }
+
+                if (($('#setreq-1').val().toUpperCase() == req_val1.toUpperCase()) && ($('#setreq-2').val().toUpperCase() == req_val2.toUpperCase()) && ($('#setreq-3').val().toUpperCase() == req_val3.toUpperCase())) {
+                    window.location = "#resetlostpwd";
+                } else {
+                    $('#popUpWrongValue').popup('open');
+                }
+            });
+        });
+
+
+
+        // retrieve pass code
+        $(document).on('pageinit', '#resetlostpwd', function () {
+
+            $('#clearresetlostpwdbtn').click(function () {
+                $('#EXR-PWD1').val("");
+                $('#EXR-PWD2').val("");
+            });
+
+            $('#saveresettbtn').click(function () {
+                //window.location = "#set";
+                // if ($('#EXR-PWD1').val() != $('#EXR-PWD2').val()) {
+                if ($('#EXR-PWD1').val() != $('#EXR-PWD2').val() || $('#EXR-PWD1').val() == "" || $('#EXR-PWD2').val() == "") {
+                    $('#popRePassWrong').popup('open');
+                } else {
+                    // window.sessionStorage.setItem("NewPwdSet", "SET"); //Set item
+                    localStorage.setItem("mainpwd", $('#EXR-PWD1').val());
+                    var STOREDdATA = localStorage.getItem("mainpwd");
+                    $('#popRePasssaved').popup('open');
+                    window.location = "#examin";
+                }
+            });
+
+        });
+
+        //Histroy
+
+        // retrieve pass code
+        $(document).on('pageinit', '#History', function () {
+
+
+            $('#confesstoday').click(function () {
+                var confHistArray = [];
+
+                var date = new Date();
+                var month = new Array();
+                month[0] = "January";
+                month[1] = "February";
+                month[2] = "March";
+                month[3] = "April";
+                month[4] = "May";
+                month[5] = "June";
+                month[6] = "July";
+                month[7] = "August";
+                month[8] = "September";
+                month[9] = "October";
+                month[10] = "November";
+                month[11] = "December";
+                //var n = month[date.getMonth()];
+                var confHiststring = localStorage.getItem("confHistArray"); //window.localStorage.getArray("confHistArray");
+
+                if (confHiststring != null) {
+                    confHiststring = confHiststring + "^" + date.getDay() + '-' + month[date.getMonth()] + '-' + date.getFullYear();
+                } else {
+                    confHiststring = date.getDay() + '-' + month[date.getMonth()] + '-' + date.getFullYear();
+                    //  confHistArray1.push(date.getDay() + '-' + month[date.getMonth()] + '-' + date.getFullYear());
+                    // gatheredPosts.push({ title: posts[i].title, url: posts[i].url, content: posts[i].content });
+
+                }
+                window.localStorage.setItem("confHistArray1", confHistArray1);
+            });
+
+
+        });
+        function convert_string_to_array(string) {
+
+            var array = string.split("^");
+            return array;
+        }
+        function convert_array_to_string(array) {
+
+            var string;
+
+            for (var i = 0; i < array.length ; i++) {
+                if (string != undefined) {
+                    string = string + "^" + array[i]; //
+                } else {
+                    string = array[i];
+                }
+            }
+
+            return string;
+        }
+        function add_to_array(array, welcome) // simple function to add data to array
+        {
+            array[array.length] = prompt(welcome);
+        }
+        $(document).on('pageshow', '#History', function () {
+            var confHistArray = [];
+            var confHistString = localStorage.getItem("MyConfessionData");
+            confHistArray = convert_string_to_array(confHistArray);
+
+            if (confHistString != null) {
+                var html = "";
+                for (var i = 0; i < confHistArray.length; i++) {
+                    html = html + "<li>" + confHistArray[i] + "</li> ";
+                }
+                document.getElementById("posts").innerHTML = html;
+                $("#posts").listview("refresh");
+            }
+        });
+
+    </script>
+    <!-- first screen -->
+    <!-- Main Page-->
+    <div id="mainpage" data-role="page">
+
+        <div data-role="content">
+            <div data-role="header" data-position="fixed">
+                <h1>Confession</h1>
+            </div><b> Five Steps For a Good Confession</b><br>
+            <p>
+                1.Examine your conscience.<br>
+                2.Be sincerely sorry for your sins.<br>
+                3.Confess your sins to a priest.<br>
+                4.Resolve to amend your life.<br>
+                5.After your confession, do the penance the priest assigns.
+            </p>
+            <p>
+                <b> Procedure in the Confessional</b><br /><br />
+                You say:
+                <b>
+                    “Bless me, Father, for I have sinned.
+                    It has been - (state the length of time)
+                    – since my last confession. These are
+                    my sins.”
+                </b><br>
+                Then tell your mortal sins and the
+                number of times committed. If you have
+                no mortal sin to confess, then confess the
+                venial sins you have committed since
+                your last confession. When you have
+                finished telling your sins, you should say:
+                “For these and all the sins of my
+                past, I am truly sorry.” <br>
+                The priest now gives the necessary
+                advice, assigns your penance and asks
+                you to say the <b>Act of Contrition </b> Then wait and listen as the priest
+                gives the absolution<br>
+                <b>
+                    Then say “Thank you, Father”, then
+                    leave the confessional and then perform
+                    the penance assigned by the priest.
+                </b>
+                <!--<a href="#sin" class="ui-btn ui-mini">Types of Sins</a>-->
+
+                <button class="ui-btn ui-mini" id="sinbtn">Types of Sins</button>
+                <!--  <a href="#examin" class="ui-btn ui-mini">Examination of Conscience </a>-->
+                <button class="ui-btn ui-mini" id="examinbtn">Examination of Conscience</button>
+                <button class="ui-btn ui-mini" id="actbtn">Act of Contrition</button>
+                <!--<button class="ui-btn ui-mini" id="History">History</button>    -->
+
+
+            <p>
+        </div>
+    </div>
+    <!-- start password-->
+    <div id="pwdscreen" data-role="page">
+
+        <div data-role="content">
+            <div data-role="header">
+                <a href="#mainpage" data-icon="home">Home</a>
+                <h1>Confession </h1>
+            </div>
+            <p>
+                This App allows you to note down your sins for confession. This page is password protected so that no one else can see the sins you have recorded.
+                If  you already have a <b>pass code</b> please use that to proceed. Otherwise create a new one using <b>New Pass Code</b> option.
+                If you forget your pass code use <b>Forgot pass Code</b> option to retrieve your data.
+            </p>
+            <p>
+                <label for="mainpwd">Enter Pass Code :</label>
+                <input type="password" data-mini="true" name="mainpwd" id="mainpwd" value="" autocomplete="off">
+                <button class="ui-btn ui-mini" id="letmeinbtn">Enter</button>
+                <button class="ui-btn ui-mini" id="nopassbtn">New Pass Code</button>
+                <button class="ui-btn ui-mini" id="forgotpass">Forgot pass Code</button>
+
+            </p>
+
+            <div data-role="popup" id="popupNoPwd">
+                <p>
+                    You have not set up the pass code.
+                    Please click on<b> New Pass Code</b>
+                    button to set up one.
+                </p>
+            </div>
+            <div data-role="popup" id="popuppwdblank">
+                <p>
+                    Please enter the <b>pass code</b>.
+                </p>
+            </div>
+            <div data-role="popup" id="popupWrongPwd">
+                <p>
+                    The pass code entered is not correct. Please try again.
+                </p>
+            </div>
+
+        </div>
+        <div data-role="footer" class="ui-bar">
+            <a href="#mainpage" data-icon="home">Home</a>
+        </div>
+    </div>
+    <!-- For pass word-->
+    <div id="sin" data-role="page">
+
+        <div data-role="content">
+            <div data-role="header">
+
+
+                <a href="#mainpage" data-icon="home">Home</a>
+                <h1>Confession</h1>
+
+
+            </div>
+            <h3>Types of Sins</h3>
+            <p>
+                There are two kinds of actual sin, mortal
+                and venial.<br>
+                Mortal sin is a horrible offense against
+                God, so horrible that it destroys the life of
+                grace in the soul. Three simultaneous
+                conditions must be fulfilled for a mortal sin:<br>
+                1. The act must be something very serious; <br>
+                2. The person must have sufficient understanding
+                of what is being done; <br>
+                3. The person must have sufficient freedom of the will.<br> So I
+                cannot commit a mortal sin if the matter is not
+                serious (e.g., if I stole a small amount of
+                money from my employer), or if I did not know
+                what I was doing (e.g., if I were to hurt
+                someone accidentally or unthinkingly), or if I
+                did not act with full freedom (e.g., I was under
+                physical or emotional pressure).<br>
+                A Catholic should know well the difference
+                between mortal and venial sins. Deliberately
+                missing Sunday Mass without sufficient cause
+                is to be considered a very serious mortal sin.
+            </p>
+        </div>
+        <div data-role="footer" class="ui-bar">
+            <a href="#mainpage" data-icon="home">Home</a>
+
+
+
+        </div>
+    </div>
+
+    <!--examin-->
+
+    <div id="examin" data-role="page">
+
+        <div data-role="content">
+            <div data-role="header">
+
+
+                <a href="#mainpage" data-icon="home">Home</a>
+                <h1>Confession </h1>
+
+            </div>
+            <h3>Examination of Conscience </h3>
+            <p> <button class="ui-btn ui-mini" id="btnClearAll">Clear All Notes</button></p>
+            <p>
+                <b>
+                    1. I am the Lord your God. You shall not
+                    have strange gods before me.
+                </b><br />
+                Do I give God time every day in prayer?<br />
+                Do I seek to love Him with my whole heart?<br />
+                Have I been involved with superstitious practices
+                (horoscopes or ouija boards) or have I been
+                involved with the occult?<br />
+                Do I seek to surrender myself to God’s Word as
+                taught by the Church?<br />
+                Have I ever received Communion in the state of
+                mortal sin?<br />
+                Have I ever deliberately told a lie in Confession or
+                have I withheld a mortal sin from the priest in
+                Confession?<br />
+
+                <label for="com1"><b>My Note:</b></label>
+                <textarea name="com1" id="com1"></textarea>
+                <!--<button class="ui-btn ui-mini" id="btn1">Save</button>-->
+
+            </p>
+            <p>
+                <b>
+                    2. You shall not take the name of the Lord
+                    your God in vain.
+
+                </b><br />
+                Have I used God’s name in vain: lightly or
+                carelessly?<br />
+                Have I been angry with God?<br />
+                Have I wished evil upon any other person?<br />
+                Have I insulted a sacred person or abused a
+                sacred object?<br />
+                <label for="com2"><b>My Note:</b></label>
+                <textarea name="com2" id="com2"></textarea><!--<button class="ui-btn ui-mini" id="btn2">Save</button>-->
+            </p>
+            <p>
+                <b>
+                    3. Remember to keep holy the Lord’s Day.
+                </b><br />
+                Have I deliberately missed Mass on Sundays or
+                Holy Days of Obligation?<br />
+                Have I not kept Sunday as a family day and a day
+                of rest?<br />
+                Do I do needless work on Sunday?<br />
+                Do I make others work on Sunday? <br />
+                <label for="com3"><b>My Note:</b></label>
+                <textarea name="com3" id="com3"></textarea><!--<button class="ui-btn ui-mini" id="btn3">Save</button>-->
+            </p>
+            <p>
+                <b>
+                    4. Honor your father and your mother.
+                </b><br />
+                Do I honor and obey my parents?<br />
+                Have I neglected my duties to my spouse and
+                children?<br />
+                Have I given my family good religious example?<br />
+                Do I try to bring peace into my home life?<br />
+                Do I care for my aged and infirm relatives?<br />
+                Do I respect my elders?<br />
+                Do I respect my pastor, bishop, and the Pope?<br />
+                <label for="com4"><b>My Note:</b></label>
+                <textarea name="com4" id="com4"></textarea><!--<button class="ui-btn ui-mini" id="btn4">Save</button>-->
+            </p>
+            <p>
+                <b>
+                    5. You shall not kill.
+
+                </b><br />
+                Have I had an abortion or encouraged anyone to
+                have an abortion?<br />
+                Have I physically harmed anyone?<br />
+                Have I abused alcohol or drugs?<br />
+                Did I give scandal to anyone, thereby leading
+                them into sin?<br />
+                Have I been angry or resentful?<br />
+                Have I harbored hatred in my heart?<br />
+                Have I been sterilized for reasons of birth control?<br />
+                Have I encouraged or condoned sterilization?<br />
+                <label for="com5"><b>My Note:</b></label>
+                <textarea name="com5" id="com5"></textarea><!--<button class="ui-btn ui-mini" id="btn5">Save</button>-->
+            </p>
+            <p>
+                <b>
+                    6. You shall not commit adultery.
+                </b><br />
+                Have I been faithful to my marriage vows
+                In thought and action?<br />
+                Have I engaged in any sexual activity before
+                marriage or outside of marriage?<br />
+                Have I used any method of contraception or
+                artificial birth control?<br />
+                Has each sexual act in my marriage been open to
+                the transmission of new life?<br />
+                Have I respected all members of the opposite sex,
+                or have I thought of other people as objects?<br />
+                Have I been guilty of any homosexual activity?<br />
+                Do I seek to be pure in my thoughts, words and
+                actions?<br />
+                Am I careful to dress modestly, so as not to tempt
+                others?<br />
+                Have I been guilty of masturbation with myself.<br />
+                <label for="com6"><b>My Note:</b></label>
+                <textarea name="com6" id="com6"></textarea><!--<button class="ui-btn ui-mini" id="btn6">Save</button>-->
+            </p>
+            <p>
+                <b>7. You shall not steal.  </b><br />
+                Have I stolen what is not mine?<br />
+                Have I returned or made restitution for what I have
+                stolen?<br />
+                Do I waste time at work, school or at home?<br />
+                Do I gamble excessively, thereby denying my family
+                of their needs?<br />
+                Do I pay my debts promptly?<br />
+                Do I seek to share what I have with the poor? <br />
+                <label for="com7"><b>My Note:</b></label>
+                <textarea name="com7" id="com7"></textarea><!--<button class="ui-btn ui-mini" id="btn7">Save</button>-->
+            </p>
+            <p>
+                <b>
+                    8. You shall not bear false witness.
+                </b><br />
+                Have I lied?<br />
+                Have I gossiped?<br />
+                Have I harmed someone’s reputation?<br />
+                Have I spoken behind someone else’s back?<br />
+                Am I critical, negative, or uncharitable in my
+                thoughts of others?<br />
+                Do I keep secret what should be kept confidential?<br />
+                <label for="com8"><b>My Note:</b></label>
+                <textarea name="com8" id="com8"></textarea><!--<button class="ui-btn ui-mini" id="btn8">Save</button>-->
+            </p>
+            <p>
+                <b> 9. You shall not desire your neighbor’s wife. </b><br />
+                Have I consented to impure thoughts? <br />Have I
+                caused them by impure television, movies, books,
+                magazines or internet?<br />
+                Do I pray at once to banish impure thoughts and
+                temptations?<br />
+                Do I listen to, or engage in, impure conversations or
+                jokes? <br />
+                <label for="com9"><b>My Note:</b></label>
+                <textarea name="com9" id="com9"></textarea><!--<button class="ui-btn ui-mini" id="btn9">Save</button>-->
+
+            </p>
+            <p>
+                <b>
+                    10. You shall not desire your neighbor’s
+                    goods.
+                </b><br />
+                Am I jealous of what other people have?<br />
+                Do I envy other people’s families or possessions?<br />
+                Am I greedy or selfish?<br />
+                Are material possessions the purpose of my life?<br />
+                Do I trust that God <br />
+                <label for="com10"><b>My Note:</b></label>
+                <textarea name="com10" id="com10"></textarea><!--<button class="ui-btn ui-mini" id="btn10">Save</button>-->
+            </p>
+        </div>
+        <div data-role="footer" class="ui-bar">
+            <a href="#mainpage" data-icon="home">Home</a>
+
+
+
+        </div>
+    </div>
+
+    <!--act-->
+
+    <div id="act" data-role="page">
+
+        <div data-role="content">
+            <div data-role="header">
+
+
+                <a href="#mainpage" data-icon="home">Home</a>
+                <h1>Confession</h1>
+
+            </div>
+            <h3>An Act of Contrition</h3>
+            <p>
+                “O my God, I am
+                heartily sorry for having
+                offended Thee, and I
+                detest all my sins,
+                because I dread the loss
+                of heaven, and the pains
+                of hell, but most of all
+                because they offend
+                Thee, my God, Who art
+                all good and deserving
+                of all My love. I firmly
+                resolve, with the help of
+                Thy grace, to sin no
+                more and to avoid the
+                near occasions of sin.
+                Amen.”
+            </p>
+        </div>
+        <div data-role="footer" class="ui-bar">
+            <a href="#mainpage" data-icon="home">Home</a>
+
+
+
+        </div>
+    </div>
+
+
+    <div id="set" data-role="page">
+
+        <div data-role="content">
+            <div data-role="header">
+
+                <a href="#mainpage" data-icon="home">Home</a>
+
+                <h1>Confession</h1>
+
+            </div>
+            <h3>New Pass Code</h3>
+            <p>
+                <label for="EX-PWD1">Enter New Pass code:</label>
+
+                <input type="password" data-mini="true" name="EX-PWD1" id="EX-PWD1" value="" autocomplete="off">
+                <label for="EX-PWD2">Re-enter Pass code:</label>
+                <input type="password" data-mini="true" name="EX-PWD2" id="EX-PWD2" value="" autocomplete="off">
+            </p>
+            <p>
+                <h5>Recovery Questions</h5>
+                <label for="req-1">Favorite Saint:</label>
+                <input type="text" data-mini="true" name="req-1" id="req-1">
+
+                <label for="req-2">Favorite color:</label>
+                <input type="text" data-mini="true" name="req-2" id="req-2">
+                <label for="req-3">Favorite place:</label>
+                <input type="text" data-mini="true" name="req-3" id="req-3">
+            </p>
+            <button class="ui-btn ui-mini" id="savesetbtn">Save & Continue</button>
+            <button class="ui-btn ui-mini" id="clearsetbtn">Clear</button>
+
+        </div>
+        <div data-role="popup" id="nopassset">
+            <p>
+                Please re-set the password before continuing.
+            </p>
+        </div>
+        <div data-role="popup" id="popNoPassEntered">
+            <p>
+                Please enter the pass code to continue.
+            </p>
+        </div>
+        <div data-role="popup" id="noData">
+            <p>
+                Please answer the recovery questions to continue.
+            </p>
+        </div>
+        <div data-role="popup" id="popPassWrong">
+            <p>
+                The re-entered pass code is not matching. Please try again.
+            </p>
+        </div>
+        <div data-role="popup" id="popPasssaved">
+            <p>
+                Data saved.
+            </p>
+        </div>
+        <div data-role="footer" class="ui-bar">
+            <a href="#mainpage" data-icon="home">Home</a>
+        </div>
+
+    </div>
+
+    <!--reset pass code-->
+    <div id="test" data-role="page">
+
+        <div data-role="content">
+            <div data-role="header">
+                <a href="#mainpage" data-icon="home">Home</a>
+                <h1>Confession </h1>
+            </div>
+            <h3>Retrieve Pass Code</h3>
+            <p>
+                <h4>Recovery Questions</h4>
+                <label for="req-1">Favorite Saint:</label>
+                <input type="text" name="setreq-1" id="setreq-1">
+
+                <label for="req-2">Favorite color:</label>
+                <input type="text" name="setreq-2" id="setreq-2">
+                <label for="req-3">Favorite place:</label>
+                <input type="text" name="setreq-3" id="setreq-3">
+            </p>
+
+            <button class="ui-btn ui-mini" id="setsavesetbtn">Reset Pass Code</button>
+            <button class="ui-btn ui-mini" id="setclearsetbtn">Clear</button>
+            <button class="ui-btn ui-mini" id="newPassCode">New Pass Code</button>
+
+        </div>
+
+        <div data-role="popup" id="popUpWrongValue">
+            <p>
+                The answers do not match with the recorded data. Please try again or click on <b>New Pass Code</b> button to create a new <b>Pass Code</b>.
+            </p>
+        </div>
+        <div data-role="popup" id="popupEntervalue">
+            <p>
+                Please answer the recovery questions and click on the <b>Reset Pass Code </b>button.
+            </p>
+        </div>
+        <div data-role="popup" id="popupNoData">
+            <p>
+                Could not retrieve the data please click on <b> New Pass Code </b>button to create one.
+            </p>
+        </div>
+        <div data-role="footer" class="ui-bar">
+            <a href="#mainpage" data-icon="home">Home</a>
+        </div>
+    </div>
+    <!-- end-->
+    <!-- reset lost pwd-->
+
+    <div id="resetlostpwd" data-role="page">
+
+        <div data-role="content">
+            <div data-role="header">
+                <a href="#mainpage" data-icon="home">Home</a>
+                <h1>Confession </h1>
+            </div>
+            <h3>Re-Set  Pass code</h3>
+            <p>
+                <label for="EXR-PWD1">Enter New Pass code:</label>
+
+                <input type="password" data-mini="true" name="EXR-PWD1" id="EXR-PWD1" value="" autocomplete="off">
+                <label for="EXR-PWD2">Re-enter Pass code:</label>
+                <input type="password" data-mini="true" name="EXR-PWD2" id="EXR-PWD2" value="" autocomplete="off">
+            </p>
+            <button class="ui-btn ui-mini" id="saveresettbtn">Save & Continue</button>
+            <button class="ui-btn ui-mini" id="clearresetlostpwdbtn">Clear</button>
+
+        </div>
+        <div data-role="popup" id="popRePassWrong">
+            <p>
+                The re-entered pass code is not matching. Please try again.
+            </p>
+        </div>
+        <div data-role="popup" id="popResetbeforeHome">
+            <p>
+                Please re-set the pass code before continuing.
+            </p>
+        </div>
+        <div data-role="popup" id="popRePasssaved">
+            <p>
+                Data saved. Click on Home to use the app.
+            </p>
+        </div>
+        <div data-role="footer" class="ui-bar">
+            <a href="#mainpage" data-icon="home">Home</a>
+        </div>
+    </div>
+
+
+    <!--History-->
+    <div id="History" data-role="page">
+
+        <div data-role="content">
+            <div data-role="header">
+
+
+                <a href="#mainpage" data-icon="home">Home</a>
+                <h1>Confession</h1>
+
+            </div>
+            <h4>History</h4>
+            <p>
+                <button class="ui-btn ui-mini" id="confesstoday">Confessing Today</button>
+            </p>
+
+            <ul data-role="listview" id="posts"></ul>
+
+
+        </div>
+
+        <!--   <div data-role="footer" class="ui-bar">
+               <button class="ui-btn ui-mini" data-icon="home" id="homePwdResetbtn">Home</button>
+
+
+
+           </div> -->
+    </div>
+</body>
+
+</html>
